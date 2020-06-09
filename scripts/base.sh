@@ -39,6 +39,7 @@ VERSION=1
 NODE_VERSION=v12.15.0
 NODE_VERSION_ARM_PI=v0.10.28
 NPM=$C9_DIR/node/bin/npm
+YARN=$C9_DIR/node/bin/yarn
 NODE=$C9_DIR/node/bin/node
 
 export TMP=$C9_DIR/tmp
@@ -253,8 +254,8 @@ ensure_local_gyp() {
       exit 1
     fi
   fi
-  "$NPM" config -g set python "$PYTHON"
-  "$NPM" config -g set unsafe-perm true
+  "$YARN" config set python "$PYTHON" -g
+  "$YARN" config set unsafe-perm true -g
 
   local GYP_PATH=$C9_DIR/node/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js
   if [ -f  "$GYP_PATH" ]; then
@@ -276,6 +277,8 @@ node(){
 
   # use local npm cache
   "$NPM" config -g set cache  "$C9_DIR/tmp/.npm"
+  "$NPM" install yarn
+  "$YARN" config set cache-folder "$C9_DIR/tmp/.yarn"
   ensure_local_gyp
 
 }
@@ -391,9 +394,9 @@ tmux_install(){
 
 collab(){
   echo :Installing Collab Dependencies
-  "$NPM" cache verify
-  "$NPM" install sqlite3
-  "$NPM" install sequelize
+  "$YARN" cache verify
+  "$YARN" add sqlite3
+  "$YARN" add sequelize
   mkdir -p "$C9_DIR"/lib
   cd "$C9_DIR"/lib
   DOWNLOAD https://raw.githubusercontent.com/c9/install/master/packages/sqlite3/linux/sqlite3.tar.gz sqlite3.tar.gz
@@ -404,12 +407,12 @@ collab(){
 
 nak(){
   echo :Installing Nak
-  "$NPM" install nak
+  "$YARN" add nak
 }
 
 ptyjs(){
   echo :Installing pty.js
-  "$NPM" install node-pty
+  "$YARN" add node-pty
 
   if ! hasPty; then
     echo "Unknown exception installing pty.js"
@@ -427,27 +430,27 @@ hasPty() {
 
 coffee(){
   echo :Installing Coffee Script
-  "$NPM" install coffee
+  "$YARN" add coffee
 }
 
 less(){
   echo :Installing Less
-  "$NPM" install less
+  "$YARN" add less
 }
 
 sass(){
   echo :Installing Sass
-  "$NPM" install sass
+  "$YARN" add sass
 }
 
 typescript(){
   echo :Installing TypeScript
-  "$NPM" install typescript
+  "$YARN" add typescript
 }
 
 stylus(){
   echo :Installing Stylus
-  "$NPM" install stylus
+  "$YARN" add stylus
 }
 
 # go(){
