@@ -391,7 +391,7 @@ tmux_install(){
 
 collab(){
   echo :Installing Collab Dependencies
-  "$NPM" cache clean
+  "$NPM" cache verify
   "$NPM" install sqlite3
   "$NPM" install sequelize
   mkdir -p "$C9_DIR"/lib
