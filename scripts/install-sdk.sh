@@ -89,7 +89,7 @@ installGlobalDeps() {
         #    URL=https://raw.githubusercontent.com/c9/install
         #fi
         #$DOWNLOAD $URL/master/install.sh | bash
-        bash base.sh
+        bash ./base.sh
     fi
 }
 
