@@ -39,7 +39,7 @@ VERSION=1
 NODE_VERSION=v12.15.0
 NODE_VERSION_ARM_PI=v0.10.28
 NPM=$C9_DIR/node/bin/npm
-YARN=$C9_DIR/node/bin/yarn
+YARN=yarn
 NODE=$C9_DIR/node/bin/node
 
 export TMP=$C9_DIR/tmp
