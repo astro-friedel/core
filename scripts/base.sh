@@ -226,7 +226,7 @@ check_python() {
 # NodeJS
 
 download_virtualenv() {
-  VIRTUALENV_VERSION="virtualenv-12.0.7"
+  VIRTUALENV_VERSION="virtualenv-20.0.21"
   DOWNLOAD "https://pypi.python.org/packages/source/v/virtualenv/$VIRTUALENV_VERSION.tar.gz" $VIRTUALENV_VERSION.tar.gz
   tar xzf $VIRTUALENV_VERSION.tar.gz
   rm $VIRTUALENV_VERSION.tar.gz
@@ -236,18 +236,18 @@ download_virtualenv() {
 ensure_local_gyp() {
   # when gyp is installed globally npm install pty.js won't work
   # to test this use `sudo apt-get install gyp`
-  if [ `"$PYTHON" -c 'import gyp; print gyp.__file__' 2> /dev/null` ]; then
+  if [ `"$PYTHON" -c 'import gyp; print(gyp.__file__)' 2> /dev/null` ]; then
     echo "You have a global gyp installed. Setting up VirtualEnv without global pakages"
     rm -rf virtualenv
     rm -rf python
     if has virtualenv; then
-      virtualenv -p python2 "$C9_DIR/python"
+      virtualenv -p python3 "$C9_DIR/python"
     else
       download_virtualenv
       "$PYTHON" virtualenv/virtualenv.py "$C9_DIR/python"
     fi
-    if [[ -f "$C9_DIR/python/bin/python2" ]]; then
-      PYTHON="$C9_DIR/python/bin/python2"
+    if [[ -f "$C9_DIR/python/bin/python3" ]]; then
+      PYTHON="$C9_DIR/python/bin/python3"
     else
       echo "Unable to setup virtualenv"
       exit 1
@@ -336,17 +336,13 @@ check_tmux_version(){
     return 1
   fi
   tmux_version=$($1 -V | sed -e's/^[a-z0-9.-]* //g' | sed -e's/[a-z]*$//')
-  echo "$tmux_version"
   if [ ! "$tmux_version" ]; then
-    echo 'VER'
     return 1
   fi
 
   if [ "$("$PYTHON" -c "print(1.7<=$tmux_version and $tmux_version <= 3.1)")" == "True" ]; then
-    echo 'OK'
     return 0
   else
-    echo 'VER2'
     return 1
   fi
 }
@@ -408,7 +404,7 @@ collab(){
 
 nak(){
   echo :Installing Nak
-  "$NPM" install https://github.com/c9/nak/tarball/c9
+  "$NPM" install nak
 }
 
 ptyjs(){
