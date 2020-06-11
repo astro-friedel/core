@@ -407,11 +407,14 @@ collab(){
 
 nak(){
   echo :Installing Nak
+  echo `which yarn`
   "$YARN" add https://github.com/astro-friedel/nak.git
 }
 
 ptyjs(){
   echo :Installing pty.js
+  echo `which yarn`
+
   "$YARN" add node-pty
 
   if ! hasPty; then
