@@ -411,6 +411,8 @@ nak(){
   echo `ls -l /root/.c9/node_modules/.bin`
 
   "$YARN" add https://github.com/astro-friedel/nak.git
+  echo `ls -l /root/.c9/node_modules/.bin`
+
 }
 
 ptyjs(){
