@@ -408,12 +408,14 @@ collab(){
 nak(){
   echo :Installing Nak
   echo `which yarn`
+  echo `ls -l /root/.c9/node_modules/.bin`
+
   "$YARN" add https://github.com/astro-friedel/nak.git
 }
 
 ptyjs(){
   echo :Installing pty.js
-  echo `which yarn`
+  echo `ls -l /root/.c9/node_modules/.bin`
 
   "$YARN" add node-pty
 
