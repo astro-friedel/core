@@ -407,7 +407,7 @@ collab(){
 
 nak(){
   echo :Installing Nak
-  "$YARN" add nak
+  "$YARN" add https://github.com/astro-friedel/nak.git
 }
 
 ptyjs(){
