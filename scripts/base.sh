@@ -278,7 +278,7 @@ node(){
   # use local npm cache
   "$NPM" config -g set cache  "$C9_DIR/tmp/.npm"
   "$NPM" install --global yarn
-  rm package-lock.json
+  #rm package-lock.json
   #"$YARN" config set cache-folder "$C9_DIR/tmp/.yarn"
   ensure_local_gyp
 
