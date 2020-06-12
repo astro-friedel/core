@@ -419,13 +419,13 @@ nak(){
 }
 
 ptyjs(){
-  echo :Installing pty.js
+  echo :Installing node-pty
   echo `ls -l /root/.c9/node_modules/.bin`
 
   "$YARN" add node-pty
 
   if ! hasPty; then
-    echo "Unknown exception installing pty.js"
+    echo "Unknown exception installing node-pty"
     "$C9_DIR/node/bin/node" -e "console.log(require('node-pty'))"
     exit 100
   fi
