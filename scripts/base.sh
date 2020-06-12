@@ -45,7 +45,7 @@ NODE=$C9_DIR/node/bin/node
 export TMP=$C9_DIR/tmp
 export TMPDIR=$TMP
 
-PYTHON=python
+PYTHON=python3
 
 # node-gyp uses sytem node or fails with command not found if
 # we don't bump this node up in the path
@@ -210,18 +210,18 @@ check_deps() {
 }
 
 check_python() {
-  if type -P python2.7 &> /dev/null; then
-    PYTHONVERSION="2.7"
-    PYTHON="python2.7"
-  elif type -P python &> /dev/null; then
-    PYTHONVERSION=`python -c 'import sys; print(".".join(map(str, sys.version_info[:2])))'`
-    PYTHON="python"
+  #if type -P python2.7 &> /dev/null; then
+  #  PYTHONVERSION="2.7"
+  #  PYTHON="python2.7"
+  if type -P python &> /dev/null; then
+    PYTHONVERSION=`python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))'`
+    PYTHON="python3"
   fi
 
-  if [[ $PYTHONVERSION != "2.7" ]]; then
-    echo "Python version 2.7 is required to install pty.js. Please install python 2.7 and try again. You can find more information on how to install Python in the docs: https://docs.c9.io/ssh_workspaces.html"
-    exit 100
-  fi
+  #if [[ $PYTHONVERSION != "2.7" ]]; then
+  #  echo "Python version 2.7 is required to install pty.js. Please install python 2.7 and try again. You can find more information on how to install Python in the docs: https://docs.c9.io/ssh_workspaces.html"
+  #  exit 100
+  #fi
 }
 
 # NodeJS
@@ -255,6 +255,7 @@ ensure_local_gyp() {
     fi
   fi
   "$YARN" config set python "$PYTHON" -g
+  echo "PYTHON  $PYTHON"
   "$YARN" config set unsafe-perm true -g
 
   local GYP_PATH=$C9_DIR/node/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js
