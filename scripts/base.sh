@@ -395,7 +395,7 @@ tmux_install(){
 
 collab(){
   echo :Installing Collab Dependencies
-  "$YARN" cache verify
+  #"$YARN" cache verify
   "$YARN" add sqlite3
   "$YARN" add sequelize
   mkdir -p "$C9_DIR"/lib
