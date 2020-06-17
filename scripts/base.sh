@@ -159,18 +159,24 @@ start() {
       cd "$C9_DIR"
       DOWNLOAD https://raw.githubusercontent.com/c9/install/master/packages/license-notice.md "Third-Party Licensing Notices.md"
 
-      echo :Done.
+      echo ":Done. INSTALL"
+      echo ""
     ;;
 
     "base" )
       echo "Installing base packages. Use --help for more options"
       start install node tmux_install nak ptyjs collab
+      echo "DONE BASE"
+      echo ""
     ;;
 
     * )
       start base
     ;;
   esac
+  echo "INSTALL COMPLETE"
+  echo ""
+  echo ""
 }
 
 check_deps() {
