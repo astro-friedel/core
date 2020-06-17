@@ -49,7 +49,7 @@ resetColor=$'\e[0m'
 # FORCE=
 
 updateNodeModules() {
-    echo "${magenta}--- Running npm install --------------------------------------------${resetColor}"
+    echo "${magenta}--- Running yarn install --------------------------------------------${resetColor}"
     "$NPM" install --production
 
     for i in $(git show HEAD:node_modules/); do
@@ -95,14 +95,14 @@ installGlobalDeps() {
 
 ############################################################################
 export C9_DIR="$HOME"/.c9
-if ! [[ $(which npm) ]]; then
+if ! [[ $(which yarn) ]]; then
     if [[ $os == "windows" ]]; then
         export PATH="$C9_DIR:$C9_DIR/node_modules/.bin:$PATH"
     else
         export PATH="$C9_DIR/node/bin:$C9_DIR/node_modules/.bin:$PATH"
     fi
 fi
-NPM=npm
+NPM=yarn
 NODE=node
 
 # cleanup build cache since c9.static doesn't do this automatically yet
