@@ -36,8 +36,8 @@ if [ ! -d "$C9_DIR" ]; then
 fi
 
 VERSION=1
-NODE_VERSION=v12.15.0
-NODE_VERSION_ARM_PI=v0.10.28
+NODE_VERSION=v14.4.0
+#NODE_VERSION_ARM_PI=v0.10.28
 NPM=$C9_DIR/node/bin/npm
 YARN=yarn
 NODE=$C9_DIR/node/bin/node
@@ -418,7 +418,7 @@ nak(){
   echo `which yarn`
   echo `ls -l /root/.c9/node_modules/.bin`
 
-  "$YARN" add  --verbose https://github.com/astro-friedel/nak.git
+  "$YARN" add https://github.com/astro-friedel/nak.git
   echo "DONE"
   echo `ls -l /root/.c9/node_modules/.bin`
 
